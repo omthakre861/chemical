@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "695491047031",
+    "project_id": "chemical-bf74e",
+    "storage_bucket": "chemical-bf74e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695491047031:android:c1101aeb7f78042120e072",
+        "android_client_info": {
+          "package_name": "com.explicate.chemical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695491047031-8j63ooiufuuqkdj7ek3opar6hb9assf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQes5dAM5ichCHMQvH_xo7ddjzM9HvMr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695491047031-8j63ooiufuuqkdj7ek3opar6hb9assf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.chemical
+package com.explicate.chemical
 
 import io.flutter.embedding.android.FlutterActivity
 
