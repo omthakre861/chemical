@@ -1,0 +1,205 @@
+{
+    "Record": {
+        "RecordType": "CID",
+        "RecordNumber": 2244,
+        "RecordTitle": "Aspirin",
+        "Section": [
+            {
+                "TOCHeading": "Chemical and Physical Properties",
+                "Description": "Chemical and physical properties such as melting point, molecular weight, etc.",
+                "Section": [
+                    {
+                        "TOCHeading": "Experimental Properties",
+                        "Description": "Properties determined experimentally (See also Safety and Hazard Properties section for more information if available)",
+                        "Section": [
+                            {
+                                "TOCHeading": "Melting Point",
+                                "Description": "This section provides the melting point and/or freezing point. The melting point is the temperature at which a substance changes state from solid to liquid at atmospheric pressure. When considered as the temperature of the reverse change, from liquid to solid, it is referred to as the freezing point.",
+                                "Information": [
+                                    {
+                                        "ReferenceNumber": 1,
+                                        "Reference": [
+                                            "National Toxicology Program, Institute of Environmental Health Sciences, National Institutes of Health (NTP). 1992. National Toxicology Program Chemical Repository Database. Research Triangle Park, North Carolina."
+                                        ],
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "275 °F (NTP, 1992)"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 32,
+                                        "Reference": [
+                                            "http://www.rsc.org/learn-chemistry/content/filerepository/CMP/00/000/045/Aspirin.pdf"
+                                        ],
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "138-140"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 38,
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "135.0 °C"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 74,
+                                        "Description": "PEER REVIEWED",
+                                        "Reference": [
+                                            "O'Neil, M.J. (ed.). The Merck Index - An Encyclopedia of Chemicals, Drugs, and Biologicals. Whitehouse Station, NJ:  Merck and Co., Inc., 2006., p. 140"
+                                        ],
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "135 °C (rapid heating)"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 75,
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "135°C"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 76,
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "135 °C"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 103,
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "275°F"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "ReferenceNumber": 188,
+                                        "Value": {
+                                            "StringWithMarkup": [
+                                                {
+                                                    "String": "275°F"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Reference": [
+            {
+                "ReferenceNumber": 1,
+                "SourceName": "CAMEO Chemicals",
+                "SourceID": "19712",
+                "Name": "ACETYLSALICYLIC ACID",
+                "Description": "CAMEO Chemicals is a chemical database designed for people who are involved in hazardous material incident response and planning. CAMEO Chemicals contains a library with thousands of datasheets containing response-related information and recommendations for hazardous materials that are commonly transported, used, or stored in the United States. CAMEO Chemicals was developed by the National Oceanic and Atmospheric Administration's Office of Response and Restoration in partnership with the Environmental Protection Agency's Office of Emergency Management.",
+                "URL": "https://cameochemicals.noaa.gov/chemical/19712",
+                "LicenseNote": "CAMEO Chemicals and all other CAMEO products are available at no charge to those organizations and individuals (recipients) responsible for the safe handling of chemicals. However, some of the chemical data itself is subject to the copyright restrictions of the companies or organizations that provided the data.",
+                "LicenseURL": "https://cameochemicals.noaa.gov/help/reference/terms_and_conditions.htm?d_f=false",
+                "ANID": 756432
+            },
+            {
+                "ReferenceNumber": 32,
+                "SourceName": "DrugBank",
+                "SourceID": "DB00945",
+                "Name": "Acetylsalicylic acid",
+                "Description": "The DrugBank database is a unique bioinformatics and cheminformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information.",
+                "URL": "https://www.drugbank.ca/drugs/DB00945",
+                "LicenseNote": "Creative Common's Attribution-NonCommercial 4.0 International License (http://creativecommons.org/licenses/by-nc/4.0/legalcode)",
+                "LicenseURL": "https://www.drugbank.ca/legal/terms_of_use",
+                "ANID": 3594228
+            },
+            {
+                "ReferenceNumber": 38,
+                "SourceName": "EPA DSSTox",
+                "SourceID": "DTXSID5020108",
+                "Name": "Aspirin",
+                "Description": "DSSTox provides a high quality public chemistry resource for supporting improved predictive toxicology.",
+                "URL": "https://comptox.epa.gov/dashboard/DTXSID5020108",
+                "LicenseURL": "https://www.epa.gov/privacy/privacy-act-laws-policies-and-resources",
+                "ANID": 1148597
+            },
+            {
+                "ReferenceNumber": 74,
+                "SourceName": "Hazardous Substances Data Bank (HSDB)",
+                "SourceID": "652",
+                "Name": "ACETYLSALICYLIC ACID",
+                "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+                "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/652",
+                "IsToxnet": true,
+                "ANID": 586
+            },
+            {
+                "ReferenceNumber": 75,
+                "SourceName": "Human Metabolome Database (HMDB)",
+                "SourceID": "HMDB0001879",
+                "Name": "Aspirin",
+                "Description": "The Human Metabolome Database (HMDB) is a freely available electronic database containing detailed information about small molecule metabolites found in the human body.",
+                "URL": "http://www.hmdb.ca/metabolites/HMDB0001879",
+                "LicenseNote": "\tHMDB is offered to the public as a freely available resource. Use and re-distribution of the data, in whole or in part, for commercial purposes requires explicit permission of the authors and explicit acknowledgment of the source material (HMDB) and the original publication (see the HMDB citing page). We ask that users who download significant portions of the database cite the HMDB paper in any resulting publications.",
+                "LicenseURL": "http://www.hmdb.ca/citing",
+                "ANID": 2143414
+            },
+            {
+                "ReferenceNumber": 76,
+                "SourceName": "ILO International Chemical Safety Cards (ICSC)",
+                "SourceID": "0822",
+                "Name": "2-(ACETYLOXY)BENZOIC ACID",
+                "Description": "International Chemical Safety Cards (ICSC) are data sheets intended to provide essential safety and health information on chemicals in a clear and concise way.",
+                "URL": "https://www.ilo.org/dyn/icsc/showcard.display?p_version=2&p_card_id=0822",
+                "LicenseNote": "The reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. For non-commercial purposes of reproduction of data, any required permission is hereby granted and no further permission must be obtained from the ILO, but acknowledgement to the ILO as the original source must be made.",
+                "LicenseURL": "https://www.ilo.org/global/copyright/request-for-permission/lang--en/index.htm",
+                "ANID": 2260702
+            },
+            {
+                "ReferenceNumber": 103,
+                "SourceName": "Occupational Safety and Health Administration (OSHA)",
+                "SourceID": "384",
+                "Name": "ACETYLSALICYLIC ACID",
+                "Description": "The OSHA Occupational Chemical Database contains over 800 entries with information such as physical properties, exposure guidelines, etc.",
+                "URL": "http://www.osha.gov/chemicaldata/chemResult.html?RecNo=384",
+                "LicenseNote": "Materials created by the federal government are generally part of the public domain and may be used, reproduced and distributed without permission. Therefore, content on this website which is in the public domain may be used without the prior permission of the U.S. Department of Labor (DOL). Warning: Some content - including both images and text - may be the copyrighted property of others and used by the DOL under a license.",
+                "LicenseURL": "https://www.dol.gov/general/aboutdol/copyright",
+                "ANID": 3410860
+            },
+            {
+                "ReferenceNumber": 188,
+                "SourceName": "The National Institute for Occupational Safety and Health (NIOSH)",
+                "SourceID": "npgd0010",
+                "Name": "Acetylsalicylic acid",
+                "Description": "The NIOSH Pocket Guide to Chemical Hazards is intended as a source of general industrial hygiene information on several hundred chemicals/classes for workers, employers, and occupational health professionals. Read more: https://www.cdc.gov/niosh/npg/",
+                "URL": "https://www.cdc.gov/niosh/npg/npgd0010.html",
+                "LicenseNote": "The information provided using CDC Web site is only intended to be general summary information to the public. It is not intended to take the place of either the written law or regulations.",
+                "LicenseURL": "https://www.cdc.gov/Other/disclaimer.html",
+                "ANID": 2266310
+            }
+        ]
+    }
+}

@@ -1,3 +1,5 @@
+import 'package:chemical/jsondata/infoscreen.dart';
+import 'package:chemical/jsonpract/jsonpract.dart';
 import 'package:chemical/webview.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +21,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'My First App',
       theme: ThemeData(
-        primaryColor: Colors.blue[400],
+        primaryColor: Colors.white,
       ),
-      home: jsonParse(),
+      home: info(),
     );
   }
 }
