@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: info(),
+      home: webview(),
     );
   }
 }
