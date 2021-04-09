@@ -1,12 +1,11 @@
-import 'package:chemical/jsondata/infoscreen.dart';
-import 'package:chemical/jsonpract/jsonpract.dart';
-import 'package:chemical/webview.dart';
+import 'package:chemical/modelar.dart';
 import 'package:flutter/material.dart';
 
-import 'homePage.dart';
-import 'jsondata/jsonParse.dart';
+import 'pages/homePage.dart';
+import 'webview.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -19,9 +18,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My First App',
+      title: 'Chemical',
       theme: ThemeData(
-        primaryColor: Colors.white,
+        primaryColor: Colors.black,
       ),
       home: webview(),
     );

@@ -18,17 +18,21 @@
     
 <script type="text/javascript">
     $( document ).ready(function() {
+
+        var opts = {};
+        opts['background']= 'white';  
       var cfg = {
 
           divid: 'icn3dwrap',
-          width: 500,
-          height: 500,
+          width: '100%',
+          height: '100%',
           showcommand: false,
           showtitle: false,
           resize: false,
           rotate: 'left',
           mobilemenu: true,
-          showmenu: false,
+          showmenu: true,
+          option:opts
           //cid: '241'
       };
       cfg['cid'] = '261';
@@ -36,6 +40,29 @@
       var icn3dui = new iCn3DUI(cfg);
       icn3dui.show3DStructure();
     });</script>
+
+    <style type="text/css">
+        html{
+            overflow: hidden;
+            background-color: black;
+            margin: 0;
+            padding: 0px;
+            
+        }
+    
+        body{
+            display:flex;
+            margin:0;
+        }
+    
+    
+        /* #icn3dwrap {
+            background-color: black;
+            height: 100%;
+            width: 100%;
+        } */
+    </style>
+    
     
 </body>
 </html>

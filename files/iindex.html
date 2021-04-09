@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://www.ncbi.nlm.nih.gov/Structure/icn3d/lib/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://www.ncbi.nlm.nih.gov/Structure/icn3d/icn3d_full_ui.css">
+    <script src="https://www.ncbi.nlm.nih.gov/Structure/icn3d/lib/jquery.min.js"></script>
+    <script src="https://www.ncbi.nlm.nih.gov/Structure/icn3d/lib/jquery-ui.min.js"></script>
+    <script src="https://www.ncbi.nlm.nih.gov/Structure/icn3d/lib/three.min.js"></script>
+    <script src="https://www.ncbi.nlm.nih.gov/Structure/icn3d/icn3d_full_ui.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+
+</style>
+
+<body id="icn3dwrap">
+    <!-- <div ></div> -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var options = {};
+
+            //Options are available at: https://www.ncbi.nlm.nih.gov/Structure/icn3d/icn3d.html#DisplayOptions
+            // options['proteins'] = 'schematic';
+
+            // use the FIXED name "icn3duiHash", which is used in iCn3DUI
+            window.icn3duiHash = {};
+            var opts = {};
+
+            opts['background'] = 'grey';
+            opts['chemicalbinding']    = 'show';
+
+            var cfg = {
+                divid: 'icn3dwrap',
+                width: window.innerWidth,
+                height: window.innerHeight,
+                resize: false,
+                rotate: 'right',
+                mobilemenu: false,
+                showcommand: false,
+                showtitle: false,
+                showmenu: false,
+                rotate:true,
+                
+                option: opts,
+
+            };
+            // cfg.options['chemicalbinding'] = 'show';
+            cfg['cid'] = '2244';
+            
+
+            if (Object.keys(options).length > 0) cfg['options'] = options;
+
+            var icn3dui = new iCn3DUI(cfg);
+            //icn3dui.saveStlFile('2244');
+            
+            
+            //communicate with the 3D viewer with chained functions
+            $.when(icn3dui.show3DStructure()).then(function () {
+                icn3dui.showTitle();
+                
+                //icn3dui.setOption('color', 'cyan');
+                
+                
+                //icn3dui.setOutlineColor('yellow');
+                
+                
+            });
+            
+            //icn3dui.saveStlFile();
+        });
+    </script>
+    
+   
+    
+    <style type="text/css">
+        html{
+            overflow: hidden;
+            background-color: black;
+            margin: 0;
+            padding: 0px;
+            
+        }
+    
+        body{
+            display:flex;
+            margin:0;
+        }
+    
+    
+        /* #icn3dwrap {
+            background-color: black;
+            height: 100%;
+            width: 100%;
+        } */
+    </style>
+</body>
+
+</html>
