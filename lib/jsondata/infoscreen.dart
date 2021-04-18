@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:chemical/jsondata/compoundidconvert/compound_id_bloc.dart';
 import 'package:chemical/jsondata/infobloceq.dart';
 import 'package:chemical/jsondata/meltingpoint.dart';
+import 'package:chemical/jsondata/nextscreen.dart';
 import 'package:chemical/jsondata/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,11 +56,15 @@ class Search extends StatelessWidget {
 
     var compound_text = TextEditingController();
     var onvalue = "";
+
     return BlocBuilder<InfoBloc, InfoState>(
       builder: (context, state) {
         if (state is InfoisnotSearch)
           return Column(
             children: [
+              SizedBox(
+                height: 40,
+              ),
               TextFormField(
                 controller: compound_text,
                 onChanged: (value) {
@@ -80,6 +85,9 @@ class Search extends StatelessWidget {
                     onPressed: () {
                       infobloc.add(FetchInfo(compound_text.text));
                       // infobloc.close();
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => nextscreen(),
+                      ));
                     },
                     color: Colors.black,
                   ),
@@ -101,18 +109,20 @@ class Search extends StatelessWidget {
                   if (state is SearchisActive)
                     return ShowSearchAuto(state.getsearch, onvalue);
                   else if (state is SearchisnotActive)
-                    return Spacer();
+                    return Container();
                   else
                     return Text("error");
                 },
               )
             ],
           );
-        else if (state is InfoIsLoading)
+        else if (state is InfoIsLoading) {
+          // searchbloc.close();
+          // infobloc.close();
           return Center(
             child: CircularProgressIndicator(),
           );
-        else if (state is InfoisNotLoaded)
+        } else if (state is InfoisNotLoaded)
           return Center(
             child: Text("Something went wrong Yoo"),
           );
@@ -151,7 +161,14 @@ class ShowInfo extends StatelessWidget {
     return Column(
       children: [
         Container(
-          child: Text(information.record.recordTitle),
+          child: Text(
+            information.record.recordTitle,
+            style: TextStyle(
+              fontFamily: "Rubik",
+              fontWeight: FontWeight.w700,
+              fontSize: 40.0,
+            ),
+          ),
         ),
         Container(
           width: double.infinity,
@@ -181,7 +198,7 @@ class ShowSearchAuto extends StatelessWidget {
   ShowSearchAuto(this.search, this.searchinfo);
   @override
   Widget build(BuildContext context) {
-    final compoundbloc = BlocProvider.of<CompoundIDBloc>(context);
+    // final compoundbloc = BlocProvider.of<CompoundIDBloc>(context);
     return Container(
       height: 300,
       child: ListView.builder(
@@ -199,11 +216,8 @@ class ShowSearchAuto extends StatelessWidget {
                 print(e);
               }
               BlocProvider.of<InfoBloc>(context).add(FetchInfo(comp.trim()));
-              
 
-              
-                // Do something
-             
+              // Do something
 
               // compoundbloc.add(FetchCompoundID(compound_nam));
 

@@ -20,7 +20,7 @@
     $( document ).ready(function() {
 
         var opts = {};
-        opts['background']= 'white';  
+        opts['color']= 'cyan';  
       var cfg = {
 
           divid: 'icn3dwrap',
@@ -32,13 +32,26 @@
           rotate: 'left',
           mobilemenu: true,
           showmenu: true,
-          option:opts
+          option:opts,
+          command : 'export stl file',
           //cid: '241'
       };
       cfg['cid'] = '261';
 
       var icn3dui = new iCn3DUI(cfg);
       icn3dui.show3DStructure();
+      $.when(icn3dui.show3DStructure()).then(function () {
+        icn3dui.showTitle();
+        //icn3dui.setRotationCenter();
+        
+        icn3dui.setOption('color', 'cyan');
+        
+        
+       // icn3dui.setOutlineColor('yellow');
+        
+        
+    });
+
     });</script>
 
     <style type="text/css">

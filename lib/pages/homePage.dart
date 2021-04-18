@@ -1,5 +1,5 @@
-import 'package:chemical/pages/search.dart';
-import 'package:chemical/webview.dart';
+import 'package:chemical/presentation/screens/search.dart';
+import 'package:chemical/3dview/3dView.dart';
 import 'package:flutter/material.dart';
 
 class homePage extends StatefulWidget {
