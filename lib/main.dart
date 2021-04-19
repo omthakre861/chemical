@@ -9,8 +9,8 @@ import 'presentation/router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(MyApp(router: AppRouter(),));
+// router: AppRouter(),
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,8 +19,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateRoute: router.generateRoute,
+    return GestureDetector(
+        onTap: (){
+          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+        },
+          child: MaterialApp(
+        // onGenerateRoute: router.generateRoute,
+        home: info(),
+      ),
     );
   }
 }

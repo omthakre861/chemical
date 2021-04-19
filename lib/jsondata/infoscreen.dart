@@ -28,21 +28,22 @@ class _infoState extends State<info> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey.shade900,
         body: MultiBlocProvider(
-      providers: [
-        BlocProvider<InfoBloc>(
-          create: (context) => InfoBloc(infoRepo: InfoRepo()),
-        ),
-        BlocProvider<SearchBloc>(
-          create: (context) => SearchBloc(searchAuto: SearchAuto()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              CompoundIDBloc(compoundCID: CompoundCIDServices()),
-        )
-      ],
-      child: Search(),
-    ));
+          providers: [
+            BlocProvider<InfoBloc>(
+              create: (context) => InfoBloc(infoRepo: InfoRepo()),
+            ),
+            BlocProvider<SearchBloc>(
+              create: (context) => SearchBloc(searchAuto: SearchAuto()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  CompoundIDBloc(compoundCID: CompoundCIDServices()),
+            )
+          ],
+          child: Search(),
+        ));
   }
 }
 
@@ -57,80 +58,114 @@ class Search extends StatelessWidget {
     var compound_text = TextEditingController();
     var onvalue = "";
 
-    return BlocBuilder<InfoBloc, InfoState>(
-      builder: (context, state) {
-        if (state is InfoisnotSearch)
-          return Column(
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                controller: compound_text,
-                onChanged: (value) {
-                  onvalue = value;
-                  debouncer.run(() {
-                    if (onvalue.length >= 3)
-                      searchbloc.add(FetchSearch(onvalue));
-                    else if (onvalue.isEmpty) {
-                      onvalue = "";
-                      searchbloc.add(FetchSearch(onvalue));
-                      // searchbloc.close();
-                    }
-                  });
-                },
-                decoration: InputDecoration(
-                  prefixIcon: IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      infobloc.add(FetchInfo(compound_text.text));
-                      // infobloc.close();
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => nextscreen(),
-                      ));
-                    },
-                    color: Colors.black,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(
-                          color: Colors.white70, style: BorderStyle.solid)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(
-                          color: Colors.blue, style: BorderStyle.solid)),
-                  hintText: "Compound name",
-                  hintStyle: TextStyle(color: Colors.black),
-                ),
-                style: TextStyle(color: Colors.black),
-              ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (context, state) {
-                  if (state is SearchisActive)
-                    return ShowSearchAuto(state.getsearch, onvalue);
-                  else if (state is SearchisnotActive)
-                    return Container();
-                  else
-                    return Text("error");
-                },
-              )
-            ],
-          );
-        else if (state is InfoIsLoading) {
-          // searchbloc.close();
-          // infobloc.close();
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is InfoisNotLoaded)
-          return Center(
-            child: Text("Something went wrong Yoo"),
-          );
-        else if (state is InfoisLoaded)
-          return ShowInfo(state.getinfo, compound_text.text);
-        else
-          return Text("Error");
+    return BlocListener<InfoBloc, InfoState>(
+      listener: (context, state) {
+        if (state is InfoisLoaded) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => nextscreen(
+              information: state.getinfo,
+              compound: compound_text.text,
+            ),
+          ));
+        }
       },
+      bloc: infobloc,
+      child: BlocBuilder<InfoBloc, InfoState>(
+        builder: (context, state) {
+          if (state is InfoisnotSearch)
+            return Column(
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(7.0),
+                  child: Material(
+                    elevation: 20,
+                    shadowColor: Colors.white,
+                    child: TextFormField(
+                      keyboardType: TextInputType.name,
+                      textCapitalization: TextCapitalization.sentences,
+                      autofocus: true,
+                      controller: compound_text,
+                      onChanged: (value) {
+                        onvalue = value;
+                        debouncer.run(() {
+                          if (onvalue.length >= 3)
+                            searchbloc.add(FetchSearch(onvalue));
+                          else if (onvalue.isEmpty) {
+                            onvalue = "";
+                            searchbloc.add(FetchSearch(onvalue));
+                            // searchbloc.close();
+                          }
+                        });
+                      },
+                      decoration: InputDecoration(
+                        prefixIcon: IconButton(
+                          icon: Icon(Icons.search),
+                          onPressed: () {
+                            infobloc.add(FetchInfo(compound_text.text));
+                            // infobloc.close();
+                          },
+                          color: Colors.black87,
+                          iconSize: 35,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(15),
+
+                        // enabledBorder: OutlineInputBorder(
+                        //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                        //     borderSide: BorderSide(
+                        //         color: Colors.black, style: BorderStyle.solid)),
+                        // focusedBorder: OutlineInputBorder(
+                        //     borderRadius: BorderRadius.all(Radius.circular(7)),
+                        //     borderSide: BorderSide(
+                        //         color: Colors.black, style: BorderStyle.solid)),
+                        hintText: "Compound Name",
+                        border: InputBorder.none,
+
+                        hintStyle: TextStyle(
+                          fontSize: 22.0,
+                          color: Colors.black,
+                          fontFamily: "Spotify",
+                        ),
+                      ),
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Rubik",
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w600),
+                      cursorColor: Colors.black,
+                    ),
+                  ),
+                ),
+                BlocBuilder<SearchBloc, SearchState>(
+                  builder: (context, state) {
+                    if (state is SearchisActive)
+                      return ShowSearchAuto(state.getsearch, onvalue);
+                    else if (state is SearchisnotActive)
+                      return Container();
+                    else
+                      return Center(child: Text("errorrrrr"));
+                  },
+                )
+              ],
+            );
+          else if (state is InfoIsLoading) {
+            // searchbloc.close();
+            // infobloc.close();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is InfoisNotLoaded)
+            return Center(
+              child: Text("Something went wrong Yoo"),
+            );
+          else
+            return Text("Error");
+        },
+      ),
     );
   }
 }
@@ -200,52 +235,69 @@ class ShowSearchAuto extends StatelessWidget {
   Widget build(BuildContext context) {
     // final compoundbloc = BlocProvider.of<CompoundIDBloc>(context);
     return Container(
-      height: 300,
+      height: 310,
       child: ListView.builder(
         itemBuilder: (context, index) {
           final infosearch = search.dictionaryTerms;
-          return ListTile(
-            title: Text(infosearch.compound[index]),
-            onTap: () async {
-              var compound_nam = infosearch.compound[index];
-              print(compound_nam);
+          return Column(
+            children: [
+              ListTile(
+                title: Text(
+                  infosearch.compound[index],
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Rubik",
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w400),
+                ),
+                onTap: () async {
+                  var compound_nam = infosearch.compound[index];
+                  print(compound_nam);
 
-              try {
-                comp = await CompoundCIDServices().getcompoundcid(compound_nam);
-              } catch (e) {
-                print(e);
-              }
-              BlocProvider.of<InfoBloc>(context).add(FetchInfo(comp.trim()));
+                  try {
+                    comp = await CompoundCIDServices()
+                        .getcompoundcid(compound_nam);
+                  } catch (e) {
+                    print(e);
+                  }
+                  BlocProvider.of<InfoBloc>(context)
+                      .add(FetchInfo(comp.trim()));
 
-              // Do something
+                  // Do something
 
-              // compoundbloc.add(FetchCompoundID(compound_nam));
+                  // compoundbloc.add(FetchCompoundID(compound_nam));
 
-              // BlocBuilder<CompoundIDBloc, CompoundIdState>(
-              //   builder: (context, state) {
-              //     if (state is AutoCompleteTileisActive)
-              //       return CircularProgressIndicator();
-              //     return (Text("Error"));
-              //   },
-              // );
+                  // BlocBuilder<CompoundIDBloc, CompoundIdState>(
+                  //   builder: (context, state) {
+                  //     if (state is AutoCompleteTileisActive)
+                  //       return CircularProgressIndicator();
+                  //     return (Text("Error"));
+                  //   },
+                  // );
 
-              // BlocProvider.of<InfoBloc>(context).add(FetchInfo("244"));
-              //  FutureBuilder(
-              //     future: compoundCID.getcompoundcid(compound_nam),
-              //     builder: (context, snapshot) {
-              //       compound_name = snapshot.data;
-              //       if (compound_name == null) {
+                  // BlocProvider.of<InfoBloc>(context).add(FetchInfo("244"));
+                  //  FutureBuilder(
+                  //     future: compoundCID.getcompoundcid(compound_nam),
+                  //     builder: (context, snapshot) {
+                  //       compound_name = snapshot.data;
+                  //       if (compound_name == null) {
 
-              //       } else {
-              //         BlocProvider.of<InfoBloc>(context)
-              //             .add(FetchInfo(compound_name));
-              //       }
-              //       return Text("Error");
-              //     });
+                  //       } else {
+                  //         BlocProvider.of<InfoBloc>(context)
+                  //             .add(FetchInfo(compound_name));
+                  //       }
+                  //       return Text("Error");
+                  //     });
 
-              // var compound_name = "261";
-              // ignore: unnecessary_statements
-            },
+                  // var compound_name = "261";
+                  // ignore: unnecessary_statements
+                },
+              ),
+              Divider(
+                thickness: 1.5,
+                color: Colors.grey,
+              ),
+            ],
           );
         },
         itemCount: search.dictionaryTerms.compound == null

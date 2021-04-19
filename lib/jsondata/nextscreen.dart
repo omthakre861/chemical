@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
-class nextscreen extends StatefulWidget {
-  @override
-  _nextscreenState createState() => _nextscreenState();
-}
+import 'meltingpoint.dart';
 
-class _nextscreenState extends State<nextscreen> {
+class nextscreen extends StatelessWidget {
+  nextscreen({Key key, this.information, this.compound}) : super(key: key);
+  Info information;
+  var compound;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text("Boi"),
-      ),
-      
+      body: Center(
+        child: Container(
+          child: Text(information.record.recordTitle),
+        ),
+      )
     );
   }
 }

@@ -8,7 +8,7 @@ class Respository_compound {
 
   Respository_compound({this.services_compound,this.compound_id});
 
-  Future<List<Info>> fetchinfo(compound_id) {
+  Future<Info> fetchinfo(compound_id) {
     services_compound.fetchinfo(compound_id);
   }
 }

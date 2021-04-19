@@ -13,7 +13,7 @@ class CompoundCubit extends Cubit<CompoundState> {
 
   void fetchinfo(compound_id) {
     respository_compound.fetchinfo(compound_id).then((info) => {
-      emit(CompoundLoaded(info: info))
+      // emit(CompoundLoaded(info: info))
     });
   }
 }
