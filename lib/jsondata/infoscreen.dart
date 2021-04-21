@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:chemical/jsondata/compoundidconvert/compound_id_bloc.dart';
 import 'package:chemical/jsondata/infobloceq.dart';
 import 'package:chemical/jsondata/meltingpoint.dart';
-import 'package:chemical/jsondata/nextscreen.dart';
+import 'package:chemical/jsondata/information_screen/comp_info_main.dart';
 import 'package:chemical/jsondata/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,14 +60,16 @@ class Search extends StatelessWidget {
 
     return BlocListener<InfoBloc, InfoState>(
       listener: (context, state) {
-        if (state is InfoisLoaded) {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => nextscreen(
-              information: state.getinfo,
-              compound: compound_text.text,
-            ),
-          ));
-        }
+        // if (state is InfoisLoaded) {
+        //   Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //           builder: (_) => Comp_info(
+        //                 information: state.getinfo,
+        //                 compound: compound_text.text,
+        //                 comp: ShowSearchAuto().comp,
+        //               )));
+        // }
       },
       bloc: infobloc,
       child: BlocBuilder<InfoBloc, InfoState>(
@@ -104,8 +106,9 @@ class Search extends StatelessWidget {
                         prefixIcon: IconButton(
                           icon: Icon(Icons.search),
                           onPressed: () {
+                            print(compound_text.text);
                             infobloc.add(FetchInfo(compound_text.text));
-                            // infobloc.close();
+                            infobloc.close();
                           },
                           color: Colors.black87,
                           iconSize: 35,
@@ -143,7 +146,8 @@ class Search extends StatelessWidget {
                 BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                     if (state is SearchisActive)
-                      return ShowSearchAuto(state.getsearch, onvalue);
+                      return ShowSearchAuto(
+                          search: state.getsearch, searchinfo: onvalue);
                     else if (state is SearchisnotActive)
                       return Container();
                     else
@@ -162,8 +166,10 @@ class Search extends StatelessWidget {
             return Center(
               child: Text("Something went wrong Yoo"),
             );
-          else
-            return Text("Error");
+          else {
+            Center(child: Text("Error"));
+          }
+         return Center(child: Text("Error boi"));
         },
       ),
     );
@@ -227,10 +233,10 @@ class ShowSearchAuto extends StatelessWidget {
   AutoComplete search;
   CompoundCIDServices compoundCID;
   final searchinfo;
-  String comp;
+  String comp = "";
   // var compound_name = "2244";
 
-  ShowSearchAuto(this.search, this.searchinfo);
+  ShowSearchAuto({this.search, this.searchinfo});
   @override
   Widget build(BuildContext context) {
     // final compoundbloc = BlocProvider.of<CompoundIDBloc>(context);
@@ -260,6 +266,7 @@ class ShowSearchAuto extends StatelessWidget {
                   } catch (e) {
                     print(e);
                   }
+                  print(comp);
                   BlocProvider.of<InfoBloc>(context)
                       .add(FetchInfo(comp.trim()));
 

@@ -42,6 +42,8 @@ class SearchState extends Equatable{
   // TODO: implement props
   List<Object> get props => [];
 
+  get getinfo => null;
+
 }
 
 

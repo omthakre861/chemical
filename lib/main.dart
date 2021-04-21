@@ -1,4 +1,5 @@
 import 'package:chemical/arcore/ar.dart';
+import 'package:chemical/jsondata/information_screen/comp_info_main.dart';
 import 'package:chemical/presentation/screens/compound_info.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +25,12 @@ class MyApp extends StatelessWidget {
           WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
         },
           child: MaterialApp(
+            theme: ThemeData(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+      ),
         // onGenerateRoute: router.generateRoute,
-        home: info(),
+        home: comp_info(),
       ),
     );
   }

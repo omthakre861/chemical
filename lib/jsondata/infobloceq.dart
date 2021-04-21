@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:chemical/jsondata/meltingpoint.dart';
 import 'package:chemical/jsondata/services.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'search_auto/search_autocomplete.dart';
 import 'search_auto/search_services.dart';
@@ -55,7 +56,7 @@ class InfoBloc extends Bloc<InfoEvent, InfoState> {
   InfoRepo infoRepo;
   
 
-  InfoBloc({this.infoRepo}) : super(InfoisnotSearch());
+  InfoBloc({@required this.infoRepo}) : super(InfoisnotSearch());
 
   @override
   Stream<InfoState> mapEventToState(InfoEvent event) async* {
