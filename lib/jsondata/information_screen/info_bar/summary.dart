@@ -3,9 +3,14 @@ import 'package:chemical/jsondata/information_screen/info_bar/SubTabs/properties
 import 'package:chemical/jsondata/information_screen/info_bar/SubTabs/structure_tab.dart';
 import 'package:flutter/material.dart';
 
+import '../../info_data.dart';
+import '../../meltingpoint.dart';
+
 class summary extends StatefulWidget {
+  InfoData info;
+  summary({this.info});
   @override
-  _summaryState createState() => _summaryState();
+  _summaryState createState() => _summaryState(info);
 }
 
 class _summaryState extends State<summary> {
@@ -13,16 +18,19 @@ class _summaryState extends State<summary> {
     Text("Summary"),
     Text("Structures"),
     Text("Properties"),
-    Text("Safety"),
-    
+    // Text("Safety"),
   ];
+
+  InfoData info;
+
+  _summaryState(this.info);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade800,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.grey.shade900,
@@ -35,7 +43,6 @@ class _summaryState extends State<summary> {
 
                 // color: Colors.black,
                 child: TabBar(
-                  
                   isScrollable: true,
                   indicatorWeight: 3,
                   indicatorColor: Colors.blue,
@@ -52,11 +59,12 @@ class _summaryState extends State<summary> {
             ),
           ),
         ),
-        body: TabBarView(children: 
-        [
-          home_tab(),
-          structure_tab(),
-          properties_tab()
+        body: TabBarView(children: [
+          home_tab(
+            info: info,
+          ),
+          structure_tab(info: info,),
+          properties_tab(info: info,)
         ]),
       ),
     );

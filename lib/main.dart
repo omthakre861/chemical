@@ -28,9 +28,10 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
+        dividerColor: Colors.blue.shade500
       ),
         // onGenerateRoute: router.generateRoute,
-        home: comp_info(),
+        home: info(),
       ),
     );
   }

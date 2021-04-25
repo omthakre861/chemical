@@ -2,13 +2,15 @@ import 'dart:async';
 
 import 'package:chemical/jsondata/compoundidconvert/compound_id_bloc.dart';
 import 'package:chemical/jsondata/infobloceq.dart';
-import 'package:chemical/jsondata/meltingpoint.dart';
+import 'package:chemical/jsondata/information_screen/info_bar/SubTabs/home_tab.dart';
+// import 'package:chemical/jsondata/meltingpoint.dart';
 import 'package:chemical/jsondata/information_screen/comp_info_main.dart';
 import 'package:chemical/jsondata/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'compoundidconvert/compound_id_services.dart';
+import 'info_data.dart';
 import 'search_auto/search_autocomplete.dart';
 import 'search_auto/search_services.dart';
 import 'search_auto/searchbloc.dart';
@@ -19,12 +21,6 @@ class info extends StatefulWidget {
 }
 
 class _infoState extends State<info> {
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +43,19 @@ class _infoState extends State<info> {
   }
 }
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
   @override
+  _SearchState createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final debouncer = Debouncer(milliseconds: 100);
@@ -69,6 +76,11 @@ class Search extends StatelessWidget {
         //                 compound: compound_text.text,
         //                 comp: ShowSearchAuto().comp,
         //               )));
+        // }
+        // if (state is InfoisLoaded) {
+        //   return comp_info();
+        //   // Navigator.push(context, MaterialPageRoute(builder: (context) => comp_info()));
+        //   // Navigator.of(context).push(MaterialPageRoute(builder: (context) => home_tab(info: state.getinfo),)) ;
         // }
       },
       bloc: infobloc,
@@ -166,10 +178,12 @@ class Search extends StatelessWidget {
             return Center(
               child: Text("Something went wrong Yoo"),
             );
+          else if (state is InfoisLoaded)
+            return comp_info(info: state.getinfo);
           else {
             Center(child: Text("Error"));
           }
-         return Center(child: Text("Error boi"));
+          return Center(child: Text("Error boi"));
         },
       ),
     );
@@ -192,7 +206,7 @@ class Debouncer {
 }
 
 class ShowInfo extends StatelessWidget {
-  Info information;
+  InfoData information;
   var compound;
 
   ShowInfo(this.information, this.compound);
@@ -233,7 +247,7 @@ class ShowSearchAuto extends StatelessWidget {
   AutoComplete search;
   CompoundCIDServices compoundCID;
   final searchinfo;
-  String comp = "";
+  static String comp;
   // var compound_name = "2244";
 
   ShowSearchAuto({this.search, this.searchinfo});

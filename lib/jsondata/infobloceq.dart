@@ -4,6 +4,7 @@ import 'package:chemical/jsondata/services.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'info_data.dart';
 import 'search_auto/search_autocomplete.dart';
 import 'search_auto/search_services.dart';
 
@@ -47,7 +48,7 @@ class InfoisLoaded extends InfoState {
   // TODO: implement props
   List<Object> get props => [_information];
 
-  Info get getinfo => _information;
+  InfoData get getinfo => _information;
 }
 
 class InfoisNotLoaded extends InfoState {}
@@ -65,7 +66,7 @@ class InfoBloc extends Bloc<InfoEvent, InfoState> {
       yield InfoIsLoading();
 
       try {
-        Info information = await infoRepo.getInfo(event._compoundid);
+        InfoData information = await infoRepo.getInfo(event._compoundid);
         yield InfoisLoaded(information);
       } catch (_) {
         yield InfoisNotLoaded();
