@@ -35,7 +35,7 @@ class _comp_infoState extends State<comp_info> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                width: MediaQuery.of(context).size.width / 1.2,
+                width: MediaQuery.of(context).size.width / 1.25,
 
                 // color: Colors.black,
                 child: TabBar(

@@ -31,7 +31,9 @@ dependencies:
   path_provider: ^1.6.28
   permission_handler: ^5.1.0+2
   arcore_flutter_plugin: ^0.0.10
-  scroll_app_bar: ^1.0.3
+  expansion_card: ^0.1.0
+  expand_widget: ^2.0.0
+  
   
   
 

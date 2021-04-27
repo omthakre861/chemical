@@ -14,6 +14,9 @@ class properties_tab extends StatefulWidget {
 class _properties_tabState extends State<properties_tab> {
   int comp_ind;
   int exe_ind;
+  
+  
+  
   @override
   void initState() {
     super.initState();
@@ -27,8 +30,8 @@ class _properties_tabState extends State<properties_tab> {
     for (int i = 0; i < widget.info.record.section.length; i++) {
       if (widget.info.record.section[i].tocHeading ==
           "Chemical and Physical Properties") {
-        index = i;
-        break;
+        return index = i;
+       
       }
     }
     return index;
@@ -141,7 +144,7 @@ class _properties_tabState extends State<properties_tab> {
           .toList());
 
   Widget expermential_table(BuildContext context) {
-    double height = 200;
+    
 
     return ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -166,7 +169,7 @@ class _properties_tabState extends State<properties_tab> {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        widget.info.record.section[3].section[1].section[index]
+                        widget.info.record.section[comp_ind].section[exe_ind].section[index]
                             .tocHeading,
                         style: TextStyle(
                             color: Colors.teal.shade200,
@@ -183,8 +186,8 @@ class _properties_tabState extends State<properties_tab> {
                             if (widget
                                     .info
                                     .record
-                                    .section[3]
-                                    .section[1]
+                                    .section[comp_ind]
+                                    .section[exe_ind]
                                     .section[index]
                                     .information[0]
                                     .value
@@ -193,15 +196,15 @@ class _properties_tabState extends State<properties_tab> {
                               return widget
                                   .info
                                   .record
-                                  .section[3]
-                                  .section[1]
+                                  .section[comp_ind]
+                                  .section[exe_ind]
                                   .section[index]
                                   .information[0]
                                   .value
                                   .stringWithMarkup[0]
                                   .string;
                             } else {
-                              return widget.info.record.section[3].section[1]
+                              return widget.info.record.section[comp_ind].section[exe_ind]
                                   .section[index].information[0].value.number[0]
                                   .toString();
                             }

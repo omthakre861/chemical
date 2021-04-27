@@ -3,7 +3,7 @@ import 'package:chemical/jsondata/infoscreen.dart';
 import 'package:flutter/material.dart';
 
 class structure_tab extends StatefulWidget {
-  structure_tab({Key key,this.info}) : super(key: key);
+  structure_tab({Key key, this.info}) : super(key: key);
   InfoData info;
   @override
   _structure_tabState createState() => _structure_tabState(info);
@@ -15,53 +15,66 @@ class _structure_tabState extends State<structure_tab> {
   var id;
   var cryst_id;
 
+  int crsy() {
+    int index = -1;
+    for (int i = 0; i < info.record.section[0].section.length; i++) {
+      if (info.record.section[0].section[i].tocHeading ==
+          "Crystal Structures") {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
   @override
   void initState() {
     super.initState();
     id = ShowSearchAuto.comp.trim();
-    cryst_id = info.record.section[0].section[2].section[1].information[1].value.externalDataUrl[0];
-    print(cryst_id);
+    if (crsy() != -1) {
+      cryst_id = info.record.section[0].section[2].section[1].information[1]
+          .value.externalDataUrl[0];
+    } else {
+      cryst_id = "";
+    }
+
+    // print(cryst_id);
   }
 
   final TransformationController _transformationController =
       TransformationController();
 
-   final TransformationController _transformationController2 =
+  final TransformationController _transformationController2 =
       TransformationController();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        
         child: Column(
           children: <Widget>[
             // SizedBox(height: 20,),
             Container(
               // color: Colors.deepPurple.shade700,
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "2D Structure",
-                  style: TextStyle(
-                      color: Color(0xffbbb2e9),
-                      fontSize: 45,
-                      fontFamily: "Spotify",
-                      fontWeight: FontWeight.bold),
-                ),
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.all(10),
+              child: Text(
+                "2D Structure",
+                style: TextStyle(
+                    color: Color(0xffbbb2e9),
+                    fontSize: 45,
+                    fontFamily: "Spotify",
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
 
-                ),
-            
             Container(
               // color: Colors.white,
               width: MediaQuery.of(context).size.width,
-                          child: Container(
-               
+              child: Container(
                 width: MediaQuery.of(context).size.width - 10,
                 margin: EdgeInsets.all(20),
-               
                 child: ClipRRect(
-                  
                   borderRadius: BorderRadius.circular(10),
                   child: InteractiveViewer(
                     transformationController: _transformationController,
@@ -83,41 +96,45 @@ class _structure_tabState extends State<structure_tab> {
               ),
             ),
             // Divider(thickness: 2,indent: 15,endIndent: 15,),
-            Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(top: 10),
-                margin: EdgeInsets.all(10),
-                child: Text(
-                  "Crystal Structure",
-                  style: TextStyle(
-                      color: Color(0xffbbb2e9),
-                      fontSize: 45,
-                      fontFamily: "Spotify",
-                      fontWeight: FontWeight.bold),
-                )),
-            Container(
-              width: MediaQuery.of(context).size.width - 10,
-              margin: EdgeInsets.all(20),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: InteractiveViewer(
-                  transformationController: _transformationController2,
-                  onInteractionEnd: (details) {
-                    _transformationController2.value = Matrix4.identity();
-                  },
-                  child: Image.network(
-                    cryst_id,
-                    loadingBuilder: (context, child, progress) {
-                      return progress == null
-                          ? child
-                          : Center(child: CircularProgressIndicator());
+            if (cryst_id != "") ...[
+              Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.all(10),
+                  child: Text(
+                    "Crystal Structure",
+                    style: TextStyle(
+                        color: Color(0xffbbb2e9),
+                        fontSize: 45,
+                        fontFamily: "Spotify",
+                        fontWeight: FontWeight.bold),
+                  )),
+              Container(
+                width: MediaQuery.of(context).size.width - 10,
+                margin: EdgeInsets.all(20),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: InteractiveViewer(
+                    transformationController: _transformationController2,
+                    onInteractionEnd: (details) {
+                      _transformationController2.value = Matrix4.identity();
                     },
-                    fit: BoxFit.fill,
+                    child: Image.network(
+                      cryst_id,
+                      loadingBuilder: (context, child, progress) {
+                        return progress == null
+                            ? child
+                            : Center(child: CircularProgressIndicator());
+                      },
+                      fit: BoxFit.fill,
+                    ),
                   ),
+                  // color: Colors.blue,
                 ),
-                // color: Colors.blue,
               ),
-            ),
+            ] else ...[
+              Container(),
+            ]
           ],
         ),
       ),

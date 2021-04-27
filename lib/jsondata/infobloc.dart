@@ -5,9 +5,9 @@ import 'package:chemical/jsondata/meltingpoint.dart';
 enum infoAction { Fetch }
 
 class InfoBloc {
-  final _stateStreamController = StreamController<Info>();
-  StreamSink<Info> get _infoSink => _stateStreamController.sink;
-  Stream<Info> get infoStream => _stateStreamController.stream;
+  final _stateStreamController = StreamController<Inform>();
+  StreamSink<Inform> get _infoSink => _stateStreamController.sink;
+  Stream<Inform> get infoStream => _stateStreamController.stream;
 
   final _eventStreamController = StreamController<infoAction>();
   StreamSink<infoAction> get eventSink => _eventStreamController.sink;
@@ -40,7 +40,7 @@ class Servicess {
   String compound;
 
   Servicess({this.compound});
-  Future<Info> getInfo() async {
+  Future<Inform> getInfo() async {
     var info;
     
     try {

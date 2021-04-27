@@ -113,8 +113,8 @@ class _jsonParseState extends State<jsonParse> {
         ));
   }
 
-  StreamBuilder<Info> name() {
-    return StreamBuilder<Info>(
+  StreamBuilder<Inform> name() {
+    return StreamBuilder<Inform>(
       stream: infobloc.infoStream,
       builder: (context, snapshot) {
         final data = snapshot.data;

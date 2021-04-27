@@ -4,18 +4,18 @@
 
 import 'dart:convert';
 
-Info infoFromJson(String str) => Info.fromJson(json.decode(str));
+Inform infoFromJson(String str) => Inform.fromJson(json.decode(str));
 
-String infoToJson(Info data) => json.encode(data.toJson());
+String infoToJson(Inform data) => json.encode(data.toJson());
 
-class Info {
-    Info({
+class Inform {
+    Inform({
         this.record,
     });
 
     Record record;
 
-    factory Info.fromJson(Map<String, dynamic> json) => Info(
+    factory Inform.fromJson(Map<String, dynamic> json) => Inform(
         record: json["Record"] == null ? null : Record.fromJson(json["Record"]),
     );
 

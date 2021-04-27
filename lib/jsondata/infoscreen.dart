@@ -15,12 +15,12 @@ import 'search_auto/search_autocomplete.dart';
 import 'search_auto/search_services.dart';
 import 'search_auto/searchbloc.dart';
 
-class info extends StatefulWidget {
+class Info extends StatefulWidget {
   @override
-  _infoState createState() => _infoState();
+  _InfoState createState() => _InfoState();
 }
 
-class _infoState extends State<info> {
+class _InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

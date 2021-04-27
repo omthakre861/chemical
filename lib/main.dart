@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         dividerColor: Colors.blue.shade500
       ),
         // onGenerateRoute: router.generateRoute,
-        home: info(),
+        home: Info(),
       ),
     );
   }
