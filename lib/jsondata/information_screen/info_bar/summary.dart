@@ -87,6 +87,7 @@ class _summaryState extends State<summary> with SingleTickerProviderStateMixin {
                     indicatorWeight: 3,
                     indicatorColor: Colors.blue,
                     indicatorSize: TabBarIndicatorSize.label,
+                    
                     // labelPadding: EdgeInsets.only(right: 5),
                     labelStyle: TextStyle(
                       fontFamily: "Spotify",
@@ -109,7 +110,7 @@ class _summaryState extends State<summary> with SingleTickerProviderStateMixin {
             properties_tab(
               info: info,
             ),
-            safe_tab(),
+            safe_tab(info: info,),
             toxicity_tab(info: info)
           ]),
         ),

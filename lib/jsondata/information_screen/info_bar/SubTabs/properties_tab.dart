@@ -1,4 +1,4 @@
-import 'package:chemical/data/model/info.dart';
+
 import 'package:chemical/jsondata/info_data.dart';
 import 'package:flutter/material.dart';
 

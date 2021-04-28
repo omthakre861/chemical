@@ -1,6 +1,6 @@
 import 'package:chemical/jsondata/info_data.dart';
 import 'package:expand_widget/expand_widget.dart';
-import 'package:expansion_card/expansion_card.dart';
+
 import 'package:flutter/material.dart';
 
 class toxicity_tab extends StatefulWidget {

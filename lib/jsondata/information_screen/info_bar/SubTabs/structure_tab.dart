@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chemical/jsondata/info_data.dart';
 import 'package:chemical/jsondata/infoscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class structure_tab extends StatefulWidget {
   structure_tab({Key key, this.info}) : super(key: key);
@@ -81,13 +83,14 @@ class _structure_tabState extends State<structure_tab> {
                     onInteractionEnd: (details) {
                       _transformationController.value = Matrix4.identity();
                     },
-                    child: Image.network(
-                      "https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?cid=$id&t=l",
-                      loadingBuilder: (context, child, progress) {
-                        return progress == null
-                            ? child
-                            : Center(child: CircularProgressIndicator());
-                      },
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?cid=$id&t=l",
+                      placeholder: (context, url) => Shimmer.fromColors(
+                          child: Container(height: 200, width: 200),
+                          baseColor: Colors.grey[300],
+                          highlightColor: Colors.grey[100]),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -119,13 +122,11 @@ class _structure_tabState extends State<structure_tab> {
                     onInteractionEnd: (details) {
                       _transformationController2.value = Matrix4.identity();
                     },
-                    child: Image.network(
-                      cryst_id,
-                      loadingBuilder: (context, child, progress) {
-                        return progress == null
-                            ? child
-                            : Center(child: CircularProgressIndicator());
-                      },
+                    child: CachedNetworkImage(
+                      imageUrl: cryst_id,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -134,7 +135,8 @@ class _structure_tabState extends State<structure_tab> {
               ),
             ] else ...[
               Container(),
-            ]
+            ],
+            
           ],
         ),
       ),

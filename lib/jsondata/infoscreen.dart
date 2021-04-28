@@ -6,6 +6,7 @@ import 'package:chemical/jsondata/information_screen/info_bar/SubTabs/home_tab.d
 // import 'package:chemical/jsondata/meltingpoint.dart';
 import 'package:chemical/jsondata/information_screen/comp_info_main.dart';
 import 'package:chemical/jsondata/services.dart';
+import 'package:chemical/jsondata/shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -171,9 +172,7 @@ class _SearchState extends State<Search> {
           else if (state is InfoIsLoading) {
             // searchbloc.close();
             // infobloc.close();
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return tab_shim();
           } else if (state is InfoisNotLoaded)
             return Center(
               child: Text("Something went wrong Yoo"),
@@ -253,6 +252,10 @@ class ShowSearchAuto extends StatelessWidget {
   ShowSearchAuto({this.search, this.searchinfo});
   @override
   Widget build(BuildContext context) {
+
+    
+
+
     // final compoundbloc = BlocProvider.of<CompoundIDBloc>(context);
     return Container(
       height: 310,

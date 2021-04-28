@@ -31,8 +31,11 @@ dependencies:
   path_provider: ^1.6.28
   permission_handler: ^5.1.0+2
   arcore_flutter_plugin: ^0.0.10
-  expansion_card: ^0.1.0
   expand_widget: ^2.0.0
+  flutter_svg: ^0.19.2+1
+  easy_rich_text: ^0.5.3
+  cached_network_image: ^2.5.1
+  shimmer: ^1.1.2
   
   
   
