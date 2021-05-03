@@ -9,6 +9,7 @@ import 'package:chemical/jsondata/services.dart';
 import 'package:chemical/jsondata/shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'compoundidconvert/compound_id_services.dart';
 import 'info_data.dart';
@@ -25,6 +26,7 @@ class _InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey.shade900,
         body: MultiBlocProvider(
           providers: [
@@ -121,7 +123,6 @@ class _SearchState extends State<Search> {
                           onPressed: () {
                             print(compound_text.text);
                             infobloc.add(FetchInfo(compound_text.text));
-                            infobloc.close();
                           },
                           color: Colors.black87,
                           iconSize: 35,
@@ -163,6 +164,7 @@ class _SearchState extends State<Search> {
                           search: state.getsearch, searchinfo: onvalue);
                     else if (state is SearchisnotActive)
                       return Container();
+                    
                     else
                       return Center(child: Text("errorrrrr"));
                   },
@@ -252,10 +254,6 @@ class ShowSearchAuto extends StatelessWidget {
   ShowSearchAuto({this.search, this.searchinfo});
   @override
   Widget build(BuildContext context) {
-
-    
-
-
     // final compoundbloc = BlocProvider.of<CompoundIDBloc>(context);
     return Container(
       height: 310,

@@ -1,4 +1,3 @@
-
 import 'package:chemical/jsondata/info_data.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +13,7 @@ class properties_tab extends StatefulWidget {
 class _properties_tabState extends State<properties_tab> {
   int comp_ind;
   int exe_ind;
-  
-  
-  
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +28,6 @@ class _properties_tabState extends State<properties_tab> {
       if (widget.info.record.section[i].tocHeading ==
           "Chemical and Physical Properties") {
         return index = i;
-       
       }
     }
     return index;
@@ -53,99 +49,101 @@ class _properties_tabState extends State<properties_tab> {
     return exp_index;
   }
 
-  Widget table() => DataTable(
-      columnSpacing: 4,
-      // dividerThickness: 3,
-      // horizontalMargin: 40,
-      dataRowHeight: 60,
-      // showBottomBorder: true,'
-      showBottomBorder: true,
-      columns: <DataColumn>[
-        DataColumn(
-          label: Text("Property Name",
-              style: TextStyle(
-                  fontFamily: "Spotify",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Color(0xffbbb2e9))),
-          numeric: false,
-        ),
-        DataColumn(
-            label: Text(
-              "Property Value",
-              style: TextStyle(
-                  fontFamily: "Spotify",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Color(0xffbbb2e9)),
-            ),
-            numeric: false),
-      ],
-      rows: widget.info.record.section[comp_ind].section[0].section
-          .map((name) => DataRow(cells: [
-                DataCell(
-                    Container(
-                      // padding: EdgeInsets.all(4),
-                      width: 200,
-                      child: Text(
-                        name.tocHeading,
-                        style: TextStyle(
-                            fontFamily: "Spotify",
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18,
-                            color: Colors.white),
-                      ),
+  Widget table() => FittedBox(
+        child: DataTable(
+            columnSpacing: 4,
+            // dividerThickness: 3,
+            // horizontalMargin: 40,
+            dataRowHeight: 60,
+            // showBottomBorder: true,'
+            showBottomBorder: true,
+            columns: <DataColumn>[
+              DataColumn(
+                label: Text("Property Name",
+                    style: TextStyle(
+                        fontFamily: "Spotify",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Color(0xffbbb2e9))),
+                numeric: false,
+              ),
+              DataColumn(
+                  label: SafeArea(
+                    child: Text(
+                      "Property Value",
+                      style: TextStyle(
+                          fontFamily: "Spotify",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          color: Color(0xffbbb2e9)),
                     ),
-                    showEditIcon: false,
-                    placeholder: false),
-                DataCell(
-                    Container(
-                      width: 180,
-                      child: Text(
-                        (() {
-                          if (name.information[0].value.number != null) {
-                            if (name.information[0].value.unit == null) {
-                              return name.information[0].value.number[0]
-                                  .toString();
-                            } else {
-                              return name.information[0].value.number[0]
-                                      .toString() +
-                                  " " +
-                                  name.information[0].value.unit;
-                            }
-                          } else {
-                            return name.information[0].value.stringWithMarkup[0]
-                                .string;
-                            //           .information[0].value.stringWithMarkup[0].string
-                          }
-                        }()),
-                        style: TextStyle(
-                            fontFamily: "Spotify",
-                            fontWeight: FontWeight.w300,
-                            fontSize: 18,
-                            color: Colors.white),
-                      ),
-                    ),
+                  ),
+                  numeric: false),
+            ],
+            rows: widget.info.record.section[comp_ind].section[0].section
+                .map((name) => DataRow(cells: [
+                      DataCell(
+                          Container(
+                            // padding: EdgeInsets.all(4),
+                            width: 200,
+                            child: Text(
+                              name.tocHeading,
+                              style: TextStyle(
+                                  fontFamily: "Spotify",
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 18,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          showEditIcon: false,
+                          placeholder: false),
+                      DataCell(
+                          Container(
+                            width: 180,
+                            child: Text(
+                              (() {
+                                if (name.information[0].value.number != null) {
+                                  if (name.information[0].value.unit == null) {
+                                    return name.information[0].value.number[0]
+                                        .toString();
+                                  } else {
+                                    return name.information[0].value.number[0]
+                                            .toString() +
+                                        " " +
+                                        name.information[0].value.unit;
+                                  }
+                                } else {
+                                  return name.information[0].value
+                                      .stringWithMarkup[0].string;
+                                  //           .information[0].value.stringWithMarkup[0].string
+                                }
+                              }()),
+                              style: TextStyle(
+                                  fontFamily: "Spotify",
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 18,
+                                  color: Colors.white),
+                            ),
+                          ),
 
-                    // Text(
-                    //   (name.information[0].value.number != null)
-                    //       ? ((name.information[0].value.unit !=null) ? (name.information[0].value.number[0].toString()):(name.information[0].value.number[0].toString()+" "+name.information[0].value.unit))
-                    //       : name
-                    //           .information[0].value.stringWithMarkup[0].string,
-                    //   style: TextStyle(
-                    //       fontFamily: "Spotify",
-                    //       fontWeight: FontWeight.w300,
-                    //       fontSize: 18,
-                    //       color: Colors.white),
-                    // ),
-                    showEditIcon: false,
-                    placeholder: false),
-              ]))
-          .toList());
+                          // Text(
+                          //   (name.information[0].value.number != null)
+                          //       ? ((name.information[0].value.unit !=null) ? (name.information[0].value.number[0].toString()):(name.information[0].value.number[0].toString()+" "+name.information[0].value.unit))
+                          //       : name
+                          //           .information[0].value.stringWithMarkup[0].string,
+                          //   style: TextStyle(
+                          //       fontFamily: "Spotify",
+                          //       fontWeight: FontWeight.w300,
+                          //       fontSize: 18,
+                          //       color: Colors.white),
+                          // ),
+                          showEditIcon: false,
+                          placeholder: false),
+                    ]))
+                .toList()),
+      );
 
   Widget expermential_table(BuildContext context) {
-    
-
     return ListView.builder(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -169,8 +167,8 @@ class _properties_tabState extends State<properties_tab> {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        widget.info.record.section[comp_ind].section[exe_ind].section[index]
-                            .tocHeading,
+                        widget.info.record.section[comp_ind].section[exe_ind]
+                            .section[index].tocHeading,
                         style: TextStyle(
                             color: Colors.teal.shade200,
                             fontSize: 25,
@@ -204,8 +202,15 @@ class _properties_tabState extends State<properties_tab> {
                                   .stringWithMarkup[0]
                                   .string;
                             } else {
-                              return widget.info.record.section[comp_ind].section[exe_ind]
-                                  .section[index].information[0].value.number[0]
+                              return widget
+                                  .info
+                                  .record
+                                  .section[comp_ind]
+                                  .section[exe_ind]
+                                  .section[index]
+                                  .information[0]
+                                  .value
+                                  .number[0]
                                   .toString();
                             }
                           }()),
@@ -235,21 +240,26 @@ class _properties_tabState extends State<properties_tab> {
         );
 
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: SafeArea(
         child: Container(
           color: Colors.black,
           alignment: Alignment.center,
           child: Column(
             children: <Widget>[
-              Container(
-                // color: Colors.black,
-                padding: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Computed Properties",
-                  style: mediumtext,
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Container(
+                  // width: MediaQuery.of(context).size.width - 50,
+                  // color: Colors.black,
+                  padding: EdgeInsets.all(10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Computed Properties",
+                    style: mediumtext,
+                  ),
+                  // color: Colors.blue,
                 ),
-                // color: Colors.blue,
               ),
               Container(
                   width: MediaQuery.of(context).size.width, child: table()),
@@ -268,7 +278,7 @@ class _properties_tabState extends State<properties_tab> {
                 expermential_table(context)
               ] else ...[
                 Container()
-              ]
+              ],
             ],
           ),
         ),

@@ -24,8 +24,6 @@ class FetchInfo extends InfoEvent {
   List<Object> get props => [];
 }
 
-
-
 class ResetInfo extends InfoEvent {}
 
 class InfoState extends Equatable {
@@ -33,8 +31,6 @@ class InfoState extends Equatable {
   // TODO: implement props
   List<Object> get props => [];
 }
-
-
 
 class InfoisnotSearch extends InfoState {}
 
@@ -55,7 +51,6 @@ class InfoisNotLoaded extends InfoState {}
 
 class InfoBloc extends Bloc<InfoEvent, InfoState> {
   InfoRepo infoRepo;
-  
 
   InfoBloc({@required this.infoRepo}) : super(InfoisnotSearch());
 
@@ -68,10 +63,11 @@ class InfoBloc extends Bloc<InfoEvent, InfoState> {
       try {
         InfoData information = await infoRepo.getInfo(event._compoundid);
         yield InfoisLoaded(information);
-      } catch (_) {
+      } catch (e) {
+        print(e);
         yield InfoisNotLoaded();
       }
-    }  else if (event is ResetInfo) {
+    } else if (event is ResetInfo) {
       yield InfoisnotSearch();
     }
   }

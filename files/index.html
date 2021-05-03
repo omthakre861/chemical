@@ -10,47 +10,50 @@
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <div id="icn3dwrap"></div>
     
 <script type="text/javascript">
+    var id;
+    
     $( document ).ready(function() {
+   window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+       window.flutter_inappwebview.callHandler('handlerFoo')
+         .then(function(result) {
+            // print to the console the data coming
+            // from the Flutter side.
+            id=result.cidId;
+            console.log(JSON.stringify(result));
+            console.log(id);
 
-        var opts = {};
-        opts['color']= 'cyan';  
-      var cfg = {
+            var cfg = {
 
-          divid: 'icn3dwrap',
-          width: '100%',
-          height: '100%',
-          showcommand: false,
-          showtitle: false,
-          resize: false,
-          rotate: 'left',
-          mobilemenu: true,
-          showmenu: true,
-          option:opts,
-          command : 'export stl file',
-          //cid: '241'
-      };
-      cfg['cid'] = '261';
-
-      var icn3dui = new iCn3DUI(cfg);
-      icn3dui.show3DStructure();
-      $.when(icn3dui.show3DStructure()).then(function () {
-        icn3dui.showTitle();
-        //icn3dui.setRotationCenter();
+                divid: 'icn3dwrap',
+                width: window.innerWidth,
+                height: window.innerHeight,
+                showcommand: false,
+                showtitle: false,
+                resize: false,
+                rotate: 'left',
+                mobilemenu: true,
+                showmenu: false,
+                
+                
+                //cid: '241'
+            };
+            console.log(id);
+            cfg['cid'] = id;
+      
+            var icn3dui = new iCn3DUI(cfg);
+            icn3dui.show3DStructure();
+   });
+   });
         
-        icn3dui.setOption('color', 'cyan');
-        
-        
-       // icn3dui.setOutlineColor('yellow');
-        
-        
-    });
+     
+      
 
     });</script>
 
@@ -79,8 +82,3 @@
     
 </body>
 </html>
-
-
-
-
-

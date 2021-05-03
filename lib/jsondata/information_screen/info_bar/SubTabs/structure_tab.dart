@@ -52,6 +52,7 @@ class _structure_tabState extends State<structure_tab> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Container(
         child: Column(
           children: <Widget>[
@@ -87,9 +88,11 @@ class _structure_tabState extends State<structure_tab> {
                       imageUrl:
                           "https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?cid=$id&t=l",
                       placeholder: (context, url) => Shimmer.fromColors(
-                          child: Container(height: 200, width: 200),
-                          baseColor: Colors.grey[300],
-                          highlightColor: Colors.grey[100]),
+                        child: Container(
+                            height: 350, width: 200, color: Colors.black),
+                        baseColor: Colors.grey[800],
+                        highlightColor: Colors.grey[600],
+                      ),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                       fit: BoxFit.fill,
                     ),
@@ -124,8 +127,12 @@ class _structure_tabState extends State<structure_tab> {
                     },
                     child: CachedNetworkImage(
                       imageUrl: cryst_id,
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        child: Container(
+                            height: 350, width: 200, color: Colors.black),
+                        baseColor: Colors.grey[800],
+                        highlightColor: Colors.grey[600],
+                      ),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                       fit: BoxFit.fill,
                     ),
@@ -136,7 +143,6 @@ class _structure_tabState extends State<structure_tab> {
             ] else ...[
               Container(),
             ],
-            
           ],
         ),
       ),

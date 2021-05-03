@@ -24,6 +24,7 @@ class SearchisnotActive extends SearchState {}
 
 class SearchisnotLoaded extends SearchState {}
 
+class SearchIsLoading extends SearchState {}
 
 class SearchisActive extends SearchState {
   final _search_info;
@@ -36,20 +37,16 @@ class SearchisActive extends SearchState {
   AutoComplete get getsearch => _search_info;
 }
 
-class SearchisLoading extends SearchState {}
-class SearchState extends Equatable{
+class SearchState extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [];
 
   get getinfo => null;
-
 }
 
-
-
-class SearchBloc extends Bloc<SearchEvent,SearchState>{
-SearchAuto searchAuto;
+class SearchBloc extends Bloc<SearchEvent, SearchState> {
+  SearchAuto searchAuto;
 
   SearchBloc({this.searchAuto}) : super(SearchisnotActive());
 
@@ -66,5 +63,4 @@ SearchAuto searchAuto;
       }
     }
   }
-
 }
