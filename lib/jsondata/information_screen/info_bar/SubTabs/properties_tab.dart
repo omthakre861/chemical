@@ -247,19 +247,16 @@ class _properties_tabState extends State<properties_tab> {
           alignment: Alignment.center,
           child: Column(
             children: <Widget>[
-              FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Container(
-                  // width: MediaQuery.of(context).size.width - 50,
-                  // color: Colors.black,
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Computed Properties",
-                    style: mediumtext,
-                  ),
-                  // color: Colors.blue,
+              Container(
+                // width: MediaQuery.of(context).size.width - 50,
+                // color: Colors.black,
+                padding: EdgeInsets.all(10),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Computed Properties",
+                  style: mediumtext,
                 ),
+                // color: Colors.blue,
               ),
               Container(
                   width: MediaQuery.of(context).size.width, child: table()),

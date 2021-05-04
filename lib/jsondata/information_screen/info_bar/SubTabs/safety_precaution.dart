@@ -24,6 +24,9 @@ class _safe_tabState extends State<safe_tab> {
     safe_id = index();
     print("safe");
     print(safe_id);
+    if(safe_id != -1){
+
+
     ghs_id = ghs_info();
     print("ghs");
     print(ghs_id);
@@ -40,6 +43,7 @@ class _safe_tabState extends State<safe_tab> {
     print("fire");
     print(fire_id);
     skin_id = skin_index();
+    }
   }
 
   List<String> first_aid = [
@@ -389,46 +393,58 @@ class _safe_tabState extends State<safe_tab> {
             ),
             if (safe_id != -1) ...[
               safety(),
+              if (health_id != -1) ...[
+                health(),
+                Divider(
+                  thickness: 2,
+                  color: Colors.red,
+                ),
+              ] else ...[
+                Container()
+              ],
+              if (fire_id != -1) ...[
+                fire(),
+                Divider(
+                  thickness: 2,
+                  color: Colors.red,
+                ),
+              ] else ...[
+                Container()
+              ],
+              if (skin_id != -1) ...[
+                skin(),
+                Divider(
+                  thickness: 2,
+                  color: Colors.red,
+                ),
+              ] else ...[
+                Container(),
+              ],
+              if (first_id != -1) ...[
+                firstaid(),
+              ] else ...[
+                Container()
+              ],
+              if (prevent_id != -1) ...[
+                prevent(),
+              ] else ...[
+                Container(),
+              ]
             ] else ...[
-              Container()
-            ],
-            if (health_id != -1) ...[
-              health(),
-              Divider(
-                thickness: 2,
-                color: Colors.red,
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 3,
               ),
-            ] else ...[
-              Container()
-            ],
-            if (fire_id != -1) ...[
-              fire(),
-              Divider(
-                thickness: 2,
-                color: Colors.red,
+              Container(
+                child: Text(
+                  "No Record Found",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontFamily: "Spotify",
+                      fontWeight: FontWeight.w800),
+                ),
               ),
-            ] else ...[
-              Container()
             ],
-            if (skin_id != -1) ...[
-              skin(),
-              Divider(
-                thickness: 2,
-                color: Colors.red,
-              ),
-            ] else ...[
-              Container(),
-            ],
-            if (first_id != -1) ...[
-              firstaid(),
-            ] else ...[
-              Container()
-            ],
-            if (prevent_id != -1) ...[
-              prevent(),
-            ] else ...[
-              Container(),
-            ]
           ],
         ),
       ),

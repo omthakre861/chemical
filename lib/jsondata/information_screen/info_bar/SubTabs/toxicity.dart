@@ -18,7 +18,12 @@ class _toxicity_tabState extends State<toxicity_tab> {
   void initState() {
     super.initState();
     comp_ind = index();
-    tox_ind = toxi_ind();
+    print("comp");
+    print(comp_ind);
+    if (comp_ind != -1) {
+      tox_ind = toxi_ind();
+      print(tox_ind);
+    }
   }
 
   int index() {
@@ -143,7 +148,7 @@ class _toxicity_tabState extends State<toxicity_tab> {
       child: Container(
         child: Column(
           children: <Widget>[
-            if (tox_ind != -1) ...[
+            if (tox_ind != -1 && comp_ind != -1) ...[
               tox_table(context)
             ] else ...[
               // Container(

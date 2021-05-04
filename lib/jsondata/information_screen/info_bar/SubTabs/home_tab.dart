@@ -22,18 +22,30 @@ class _home_tabState extends State<home_tab> {
   int safe_id;
   int iupac_id;
   int comput_id;
+  int mol_formu_id;
+  int insight_id;
 
   @override
   void initState() {
     super.initState();
     safe_id = safe_index();
-    mol_id = mol_index();
-    iupac_id = iupac_index();
-    comput_id = compu_index();
-
+    print("Safe");
     print(safe_id);
+    mol_id = mol_index();
+    print("mol");
     print(mol_id);
+    mol_formu_id = mol_formula_index();
+    print("molfor");
+    print(mol_formu_id);
+    comput_id = compu_index();
+    print("comp");
+    print(comput_id);
+    iupac_id = iupac_index();
+    print("iupac");
     print(iupac_id);
+    insight_id = insight_index();
+    print("insight");
+    print(insight_id);
   }
 
   int mol_index() {
@@ -41,6 +53,34 @@ class _home_tabState extends State<home_tab> {
 
     for (int i = 0; i < widget.info.record.section.length; i++) {
       if (widget.info.record.section[i].tocHeading == "Names and Identifiers") {
+        return index = i;
+      }
+    }
+    return index;
+  }
+
+  int insight_index() {
+    int index = -1;
+
+    for (int i = 0;
+        i < widget.info.record.section[mol_id].section.length;
+        i++) {
+      if (widget.info.record.section[mol_id].section[i].tocHeading ==
+          "Record Description") {
+        return index = i;
+      }
+    }
+    return index;
+  }
+
+  int mol_formula_index() {
+    int index = -1;
+
+    for (int i = 0;
+        i < widget.info.record.section[mol_id].section.length;
+        i++) {
+      if (widget.info.record.section[mol_id].section[i].tocHeading ==
+          "Molecular Formula") {
         return index = i;
       }
     }
@@ -62,9 +102,12 @@ class _home_tabState extends State<home_tab> {
     int index = -1;
 
     for (int i = 0;
-        i < widget.info.record.section[mol_id].section[1].section.length;
+        i <
+            widget
+                .info.record.section[mol_id].section[comput_id].section.length;
         i++) {
-      if (widget.info.record.section[mol_id].section[1].section[i].tocHeading ==
+      if (widget.info.record.section[mol_id].section[comput_id].section[i]
+              .tocHeading ==
           "IUPAC Name") {
         return index = i;
       }
@@ -153,8 +196,8 @@ class _home_tabState extends State<home_tab> {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: EasyRichText(
-            widget.info.record.section[mol_id].section[2].information[0].value
-                .stringWithMarkup[0].string,
+            widget.info.record.section[mol_id].section[mol_formu_id]
+                .information[0].value.stringWithMarkup[0].string,
             defaultStyle: TextStyle(
                 fontFamily: "Spotify",
                 fontSize: 50,
@@ -369,8 +412,16 @@ class _home_tabState extends State<home_tab> {
             ] else ...[
               SizedBox(),
             ],
-            iupac(),
-            insight(),
+            if (iupac_id != -1) ...[
+              iupac(),
+            ] else ...[
+              SizedBox(),
+            ],
+            if (insight_id != -1) ...[
+              insight(),
+            ] else ...[
+              SizedBox(),
+            ]
           ],
         ),
       ),

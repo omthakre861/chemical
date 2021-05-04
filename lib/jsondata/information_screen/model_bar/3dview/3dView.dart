@@ -14,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart'
     show ArCoreController;
+import 'package:store_redirect/store_redirect.dart';
 
 class webview extends StatefulWidget {
   @override
@@ -128,21 +129,18 @@ class _webviewState extends State<webview>
 
     if (await Permission.camera.isGranted) {
       return Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => artemp(),
+        builder: (context) => ArView(),
       ));
     } else {
-      
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20))),
-                  content: Text("Provide Camera permission to use camera.",
-                      style: TextStyle(
-                          fontFamily: "Spotify",
-                          fontWeight: FontWeight.w300,
-                          fontSize: 20))));
-          
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+          content: Text("Provide Camera permission to use camera.",
+              style: TextStyle(
+                  fontFamily: "Spotify",
+                  fontWeight: FontWeight.w300,
+                  fontSize: 20))));
     }
   }
 
@@ -231,19 +229,31 @@ class _webviewState extends State<webview>
           ),
           onPressed: () async {
             if (await ArCoreController.checkArCoreAvailability()) {
-              return _checkpermission_opencamera();
-              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //     shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.only(
-              //             topLeft: Radius.circular(20),
-              //             topRight: Radius.circular(20))),
-              //     content: Text("ARcore is supported",
-              //         style: TextStyle(
-              //             fontFamily: "Spotify",
-              //             fontWeight: FontWeight.w300,
-              //             fontSize: 20))));
+              if (await ArCoreController.checkIsArCoreInstalled()) {
+                return _checkpermission_opencamera();
+              } else {
+                return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    action: SnackBarAction(
+                      label: 'Install',
+                      onPressed: () {
+                        StoreRedirect.redirect(
+                          androidAppId: "com.google.ar.core",
+                        );
+                      },
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    content: Text(
+                        "Install ARCore Library for better experiences",
+                        style: TextStyle(
+                            fontFamily: "Spotify",
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20))));
+              }
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
@@ -252,7 +262,7 @@ class _webviewState extends State<webview>
                       style: TextStyle(
                           fontFamily: "Spotify",
                           fontWeight: FontWeight.w300,
-                          fontSize: 20))));
+                          fontSize: 18))));
             }
           },
         ));

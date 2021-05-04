@@ -17,6 +17,9 @@ class _structure_tabState extends State<structure_tab> {
   var id;
   var cryst_id;
 
+  int cryst_index;
+  int cryst_data;
+
   int crsy() {
     int index = -1;
     for (int i = 0; i < info.record.section[0].section.length; i++) {
@@ -29,13 +32,34 @@ class _structure_tabState extends State<structure_tab> {
     return index;
   }
 
+  int crsy_data() {
+    int index = -1;
+    for (int i = 0;
+        i < info.record.section[0].section[cryst_index].section.length;
+        i++) {
+      if (info.record.section[0].section[cryst_index].section[i].tocHeading ==
+          "Crystal Structure Data") {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
   @override
   void initState() {
     super.initState();
     id = ShowSearchAuto.comp.trim();
-    if (crsy() != -1) {
-      cryst_id = info.record.section[0].section[2].section[1].information[1]
-          .value.externalDataUrl[0];
+    cryst_index = crsy();
+    print("cryst_index");
+    print(cryst_index);
+    cryst_data = crsy_data();
+    print("cryst_data");
+    print(cryst_data);
+
+    if (cryst_index != -1 && cryst_data != -1) {
+      cryst_id = info.record.section[0].section[2].section[cryst_data]
+          .information[1].value.externalDataUrl[0];
     } else {
       cryst_id = "";
     }

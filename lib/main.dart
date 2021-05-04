@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
             splashColor: Colors.transparent,
             dividerColor: Colors.blue.shade500),
         // onGenerateRoute: router.generateRoute,
-        // home: Info(),
-        home: artemp(),
+        home: Info(),
+        // home: artemp(),
         // home: tab_shim(),
       ),
     );

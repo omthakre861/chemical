@@ -23,6 +23,7 @@ class _artempState extends State<artemp> {
         body: ArCoreView(
           onArCoreViewCreated: _onArCoreViewCreated,
           enableTapRecognizer: true,
+          
         ),
       ),
     );

@@ -12,8 +12,10 @@ class comp_info extends StatefulWidget {
   _comp_infoState createState() => _comp_infoState(info);
 }
 
-class _comp_infoState extends State<comp_info> {
+class _comp_infoState extends State<comp_info>
+    with SingleTickerProviderStateMixin {
   InfoData info;
+  TabController _tabController;
 
   List<Widget> _infoTabs = <Widget>[
     FittedBox(fit: BoxFit.fitWidth, child: Text("Content")),
@@ -23,27 +25,57 @@ class _comp_infoState extends State<comp_info> {
   _comp_infoState(this.info);
 
   @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-          appBar: AppBar(
-            // status bar color
-            brightness: Brightness.dark,
-            elevation: 0,
-            backgroundColor: Colors.grey.shade900,
-            flexibleSpace: PreferredSize(
-              preferredSize: Size.zero,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 1.25,
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: _infoTabs.length);
+  }
 
-                  // color: Colors.black,
-                  child: Expanded(
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  Future<bool> _onWillPop() async {
+    print("on will pop");
+    // if (_tabController.index == 0) {
+    //   Navigator.pushReplacement(
+    //       context, MaterialPageRoute(builder: (context) => Info()));
+    // }
+
+    Future.delayed(Duration(milliseconds: 200), () {
+      print("set index");
+      _tabController.index = 0;
+    });
+
+    print("return");
+    return _tabController.index == 0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: DefaultTabController(
+        length: 2,
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.grey.shade900,
+            appBar: AppBar(
+              // status bar color
+              brightness: Brightness.dark,
+              elevation: 0,
+              backgroundColor: Colors.grey.shade900,
+              flexibleSpace: PreferredSize(
+                preferredSize: Size.zero,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 1.25,
+
+                    // color: Colors.black,
                     child: TabBar(
+                      controller: _tabController,
                       indicatorColor: Colors.transparent,
                       labelPadding: EdgeInsets.only(left: 10),
                       labelStyle: TextStyle(
@@ -57,18 +89,19 @@ class _comp_infoState extends State<comp_info> {
                 ),
               ),
             ),
-          ),
-          body: PageView(
-            children: [
-              TabBarView(
-                  physics: NeverScrollableScrollPhysics(),
-                  children: <Widget>[
-                    summary(
-                      info: info,
-                    ),
-                    webview(),
-                  ])
-            ],
+            body: PageView(
+              children: [
+                TabBarView(
+                    controller: _tabController,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: <Widget>[
+                      summary(
+                        info: info,
+                      ),
+                      webview(),
+                    ])
+              ],
+            ),
           ),
         ),
       ),
