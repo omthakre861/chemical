@@ -7,8 +7,6 @@
     <item>
         <bitmap
             android:gravity="fill"
-            android:src="@drawable/launcherimg"
-              android:tileMode="disabled"
-              />
+            android:src="@mipmap/launcher" />
     </item>
 </layer-list>
