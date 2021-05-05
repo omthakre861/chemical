@@ -11,7 +11,7 @@
     <uses-sdk android:minSdkVersion="14" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="chemical"
+        android:label="Chem3D"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
