@@ -18,11 +18,11 @@ class _toxicity_tabState extends State<toxicity_tab> {
   void initState() {
     super.initState();
     comp_ind = index();
-    print("comp");
-    print(comp_ind);
+    // print("comp");
+    // print(comp_ind);
     if (comp_ind != -1) {
       tox_ind = toxi_ind();
-      print(tox_ind);
+      // print(tox_ind);
     }
   }
 
@@ -47,7 +47,7 @@ class _toxicity_tabState extends State<toxicity_tab> {
       if (widget.info.record.section[comp_ind].section[i].tocHeading ==
           "Ecological Information") {
         tox_index = i;
-        print(tox_index);
+        // print(tox_index);
         break;
       }
     }

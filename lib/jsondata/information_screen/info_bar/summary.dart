@@ -35,18 +35,18 @@ class _summaryState extends State<summary> with SingleTickerProviderStateMixin {
   }
 
   Future<bool> _onWillPop() async {
-    print("on will pop");
+    // print("on will pop");
     if (_tabController.index == 0) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Info()));
     }
 
     Future.delayed(Duration(milliseconds: 200), () {
-      print("set index");
+      // print("set index");
       _tabController.index = 0;
     });
 
-    print("return");
+    // print("return");
     return _tabController.index == 0;
   }
 

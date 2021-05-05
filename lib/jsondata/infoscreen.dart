@@ -67,6 +67,7 @@ class _SearchState extends State<Search> {
 
     var compound_text = TextEditingController();
     var onvalue = "";
+    var submitvalue = "";
 
     return BlocListener<InfoBloc, InfoState>(
       listener: (context, state) {
@@ -101,10 +102,25 @@ class _SearchState extends State<Search> {
                     elevation: 20,
                     shadowColor: Colors.white,
                     child: TextFormField(
+                      textInputAction: TextInputAction.search,
                       keyboardType: TextInputType.name,
                       textCapitalization: TextCapitalization.sentences,
                       autofocus: true,
                       controller: compound_text,
+                      onFieldSubmitted: (value) async {
+                        String comp_id;
+                        submitvalue = value;
+                        try {
+                          comp_id = await CompoundCIDServices()
+                              .getcompoundcid(submitvalue);
+                        } catch (e) {
+                          print(e);
+                        }
+                        print(comp_id);
+                        ShowSearchAuto.comp = comp_id;
+                        BlocProvider.of<InfoBloc>(context)
+                            .add(FetchInfo(comp_id.trim()));
+                      },
                       onChanged: (value) {
                         onvalue = value;
                         debouncer.run(() {
@@ -118,14 +134,10 @@ class _SearchState extends State<Search> {
                         });
                       },
                       decoration: InputDecoration(
-                        prefixIcon: IconButton(
-                          icon: Icon(Icons.search),
-                          onPressed: () {
-                            print(compound_text.text);
-                            infobloc.add(FetchInfo(compound_text.text));
-                          },
+                        prefixIcon: Icon(
+                          Icons.search_rounded,
                           color: Colors.black87,
-                          iconSize: 35,
+                          size: 35,
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -164,7 +176,6 @@ class _SearchState extends State<Search> {
                           search: state.getsearch, searchinfo: onvalue);
                     else if (state is SearchisnotActive)
                       return Container();
-                    
                     else
                       return Center(child: Text("errorrrrr"));
                   },

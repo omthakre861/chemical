@@ -42,7 +42,7 @@ class _properties_tabState extends State<properties_tab> {
       if (widget.info.record.section[comp_ind].section[i].tocHeading ==
           "Experimental Properties") {
         exp_index = i;
-        print(exp_index);
+        // print(exp_index);
         break;
       }
     }

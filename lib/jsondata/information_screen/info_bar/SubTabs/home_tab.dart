@@ -29,23 +29,23 @@ class _home_tabState extends State<home_tab> {
   void initState() {
     super.initState();
     safe_id = safe_index();
-    print("Safe");
-    print(safe_id);
+    // print("Safe");
+    // print(safe_id);
     mol_id = mol_index();
-    print("mol");
-    print(mol_id);
+    // print("mol");
+    // print(mol_id);
     mol_formu_id = mol_formula_index();
-    print("molfor");
-    print(mol_formu_id);
+    // print("molfor");
+    // print(mol_formu_id);
     comput_id = compu_index();
-    print("comp");
-    print(comput_id);
+    // print("comp");
+    // print(comput_id);
     iupac_id = iupac_index();
-    print("iupac");
-    print(iupac_id);
+    // print("iupac");
+    // print(iupac_id);
     insight_id = insight_index();
-    print("insight");
-    print(insight_id);
+    // print("insight");
+    // print(insight_id);
   }
 
   int mol_index() {

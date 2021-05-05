@@ -53,9 +53,11 @@ class _structure_tabState extends State<structure_tab> {
     cryst_index = crsy();
     print("cryst_index");
     print(cryst_index);
-    cryst_data = crsy_data();
-    print("cryst_data");
-    print(cryst_data);
+    if (cryst_index != -1) {
+      cryst_data = crsy_data();
+      print("cryst_data");
+      print(cryst_data);
+    }
 
     if (cryst_index != -1 && cryst_data != -1) {
       cryst_id = info.record.section[0].section[2].section[cryst_data]
@@ -126,7 +128,7 @@ class _structure_tabState extends State<structure_tab> {
               ),
             ),
             // Divider(thickness: 2,indent: 15,endIndent: 15,),
-            if (cryst_id != "") ...[
+            if (cryst_id != "" && cryst_index != -1) ...[
               Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(top: 10),

@@ -22,27 +22,25 @@ class _safe_tabState extends State<safe_tab> {
   void initState() {
     super.initState();
     safe_id = index();
-    print("safe");
-    print(safe_id);
-    if(safe_id != -1){
-
-
-    ghs_id = ghs_info();
-    print("ghs");
-    print(ghs_id);
-    prevent_id = prev_index();
-    print("preve");
-    print(prevent_id);
-    first_id = first_index();
-    print("first");
-    print(first_id);
-    health_id = health_index();
-    print("health");
-    print(health_id);
-    fire_id = fire_index();
-    print("fire");
-    print(fire_id);
-    skin_id = skin_index();
+    // print("safe");
+    // print(safe_id);
+    if (safe_id != -1) {
+      ghs_id = ghs_info();
+      // print("ghs");
+      // print(ghs_id);
+      prevent_id = prev_index();
+      // print("preve");
+      // print(prevent_id);
+      first_id = first_index();
+      // print("first");
+      // print(first_id);
+      health_id = health_index();
+      // print("health");
+      // print(health_id);
+      fire_id = fire_index();
+      // print("fire");
+      // print(fire_id);
+      skin_id = skin_index();
     }
   }
 
