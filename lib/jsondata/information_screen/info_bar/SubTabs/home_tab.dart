@@ -18,7 +18,7 @@ class home_tab extends StatefulWidget {
 
 class _home_tabState extends State<home_tab> {
   var id = ShowSearchAuto.comp;
-  int mol_id;
+  static int mol_id;
   int safe_id;
   int iupac_id;
   int comput_id;
@@ -29,6 +29,7 @@ class _home_tabState extends State<home_tab> {
   void initState() {
     super.initState();
     safe_id = safe_index();
+    print(widget.info.record.section);
     // print("Safe");
     // print(safe_id);
     mol_id = mol_index();

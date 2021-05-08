@@ -4,6 +4,9 @@ import 'info_data.dart';
 // import 'user.dart';
 
 class InfoRepo {
+  
+
+
   Future<InfoData> getInfo(String compound_id) async {
     final url =
         'https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/$compound_id/JSON';
@@ -15,6 +18,7 @@ class InfoRepo {
         var info = infoDataFromJson(req.body);
 
         return info;
+
       } else {
         final body = req.body;
         final error = infoDataFromJson(body);
