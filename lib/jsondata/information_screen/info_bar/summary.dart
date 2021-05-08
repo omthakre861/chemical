@@ -71,6 +71,7 @@ class _summaryState extends State<summary> with SingleTickerProviderStateMixin {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             elevation: 0,
             backgroundColor: Colors.grey.shade900,
             bottom: PreferredSize(

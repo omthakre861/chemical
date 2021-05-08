@@ -20,6 +20,7 @@ class summ_shim extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.grey.shade900,
           bottom: PreferredSize(

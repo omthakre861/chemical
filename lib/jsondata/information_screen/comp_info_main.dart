@@ -62,6 +62,7 @@ class _comp_infoState extends State<comp_info>
           child: Scaffold(
             backgroundColor: Colors.grey.shade900,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               // status bar color
               brightness: Brightness.dark,
               elevation: 0,

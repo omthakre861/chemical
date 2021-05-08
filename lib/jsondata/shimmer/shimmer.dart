@@ -15,6 +15,7 @@ class tab_shim extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.grey.shade900,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             // status bar color
             brightness: Brightness.dark,
             elevation: 0,
