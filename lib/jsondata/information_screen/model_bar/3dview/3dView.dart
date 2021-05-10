@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
 import 'package:chemical/arcore/ar.dart';
 import 'package:chemical/arcore/artemp.dart';
 import 'package:chemical/jsondata/infoscreen.dart';
@@ -15,6 +16,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart'
     show ArCoreController;
 import 'package:store_redirect/store_redirect.dart';
+import 'package:vibration/vibration.dart';
 
 class webview extends StatefulWidget {
   @override
@@ -24,6 +26,7 @@ class webview extends StatefulWidget {
 class _webviewState extends State<webview>
     with AutomaticKeepAliveClientMixin<webview> {
   String cmp_id;
+  // bool available = false;
 
   @override
   void initState() {
@@ -114,6 +117,27 @@ class _webviewState extends State<webview>
   // }
   //
   //
+  Future<bool> availstl() async {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        content: Text("Setting up 3D Model",
+            style: TextStyle(
+                fontFamily: "Spotify",
+                fontWeight: FontWeight.w300,
+                fontSize: 20))));
+
+    final url =
+        'https://3dprint.nih.gov/sites/default/files/models/chem_files/PubChem-$cmp_id-bas.stl';
+
+    final req = await http.get(url);
+    if (req.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
   _checkpermission_opencamera() async {
     var cameraStatus = await Permission.camera.status;
 
@@ -128,6 +152,8 @@ class _webviewState extends State<webview>
     if (!cameraStatus.isGranted) await Permission.camera.request();
 
     if (await Permission.camera.isGranted) {
+      Vibration.vibrate(amplitude: 400, duration: 20);
+      Vibration.vibrate(amplitude: 5, duration: 100);
       return Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ArView(),
       ));
@@ -229,28 +255,41 @@ class _webviewState extends State<webview>
           ),
           onPressed: () async {
             if (await ArCoreController.checkArCoreAvailability()) {
-              if (await ArCoreController.checkIsArCoreInstalled()) {
-                return _checkpermission_opencamera();
+              if (await availstl()) {
+                if (await ArCoreController.checkIsArCoreInstalled()) {
+                  return _checkpermission_opencamera();
+                } else {
+                  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      action: SnackBarAction(
+                        label: 'Install',
+                        onPressed: () {
+                          StoreRedirect.redirect(
+                            androidAppId: "com.google.ar.core",
+                          );
+                        },
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20))),
+                      content: Text(
+                          "Install ARCore Library for better experiences",
+                          style: TextStyle(
+                              fontFamily: "Spotify",
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20))));
+                }
               } else {
                 return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    action: SnackBarAction(
-                      label: 'Install',
-                      onPressed: () {
-                        StoreRedirect.redirect(
-                          androidAppId: "com.google.ar.core",
-                        );
-                      },
-                    ),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
-                    content: Text(
-                        "Install ARCore Library for better experiences",
+                    content: Text("This Model is currently not available in AR",
                         style: TextStyle(
                             fontFamily: "Spotify",
                             fontWeight: FontWeight.w300,
-                            fontSize: 20))));
+                            fontSize: 18))));
               }
             } else {
               return ScaffoldMessenger.of(context).showSnackBar(SnackBar(

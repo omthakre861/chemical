@@ -41,6 +41,7 @@ class _elementgridState extends State<elementgrid> {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
+        brightness: Brightness.dark,
         backgroundColor: Colors.grey.shade900,
         elevation: 0.0,
         title: Text("Periodic Table",
@@ -520,11 +521,6 @@ class _elementgridState extends State<elementgrid> {
                   },
                 );
               },
-        // : () => Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) =>
-        //             ElementScreen(element: element, level: widget.level))),
         child: GridTile(
           child: Container(
             child: tile,

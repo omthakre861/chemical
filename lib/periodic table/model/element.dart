@@ -178,7 +178,7 @@ class mElement {
           colorByElCat = Color(0xFF008000);
         }
         break;
-        
+
       case 'unknown':
         {
           colorByElCat = Color(0xFF353D40);
@@ -273,38 +273,6 @@ class mElement {
 
     return ionicCharge;
   }
-
-  // static String getAbbreviatedElectronConfig(
-  //     List<mElement> elements, mElement el) {
-  //   List<String> startElectronConfigSymbol = [];
-  //   List<String> startElectronConfig = [];
-  //   String startElectronConfigString = '';
-  //   String endElectronConfigString = '';
-  //   String electronConfig = '';
-
-  //   elements.forEach((element) {
-  //     // print(el.electronConfig.startsWith(element.electronConfig));
-  //     if (el.electronConfig.startsWith(element.electronConfig)) {
-  //       startElectronConfigSymbol.add(element.symbol);
-  //       startElectronConfig.add(element.electronConfig);
-  //     } else {
-  //       electronConfig = el.electronConfig;
-  //     }
-  //   });
-
-  //   startElectronConfigString = startElectronConfigSymbol
-  //       .elementAt(startElectronConfigSymbol.length - 2);
-
-  //   endElectronConfigString = el.electronConfig
-  //       .split(startElectronConfig.elementAt(startElectronConfig.length - 2))
-  //       .last;
-
-  //   electronConfig = '[$startElectronConfigString]$endElectronConfigString';
-  //   print(startElectronConfigSymbol);
-  //   print(electronConfig);
-
-  //   return electronConfig;
-  // }
 
   static List parseList(listJson) {
     List list = new List.from(listJson);

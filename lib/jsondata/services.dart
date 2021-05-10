@@ -8,6 +8,7 @@ class InfoRepo {
 
 
   Future<InfoData> getInfo(String compound_id) async {
+ 
     final url =
         'https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/$compound_id/JSON';
 
@@ -30,4 +31,5 @@ class InfoRepo {
       print(e);
     }
   }
+
 }
