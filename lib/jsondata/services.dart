@@ -13,7 +13,7 @@ class InfoRepo {
         'https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/$compound_id/JSON';
 
     final req = await http.get(url);
-
+ 
     try {
       if (req.statusCode == 200) {
         var info = infoDataFromJson(req.body);

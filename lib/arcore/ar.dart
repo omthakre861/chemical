@@ -15,7 +15,7 @@ class _ArViewState extends State<ArView> {
   @override
   void initState() {
     id = ShowSearchAuto.comp.trim();
-    objectPath = "http://192.168.1.3:5000/files/$id.glb";
+    objectPath = "http://192.168.0.101:5000/files/$id.glb";
     super.initState();
   }
 

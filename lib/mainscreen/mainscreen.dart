@@ -46,6 +46,7 @@ class _mainscreenState extends State<mainscreen> {
                     //   height: MediaQuery.of(context).size.height * 0.15,
                     // ),
                     InkWell(
+                      
                       onTap: () {
                         return Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Info(),
