@@ -249,9 +249,16 @@ class _home_tabState extends State<home_tab> {
                     ),
                     children: <TextSpan>[
                   TextSpan(
-                      text: widget.info.record.section[mol_id + 1].section[0]
-                          .section[0].information[0].value.number[0]
-                          .toString()),
+                      text: widget
+                          .info
+                          .record
+                          .section[mol_id + 1]
+                          .section[0]
+                          .section[0]
+                          .information[0]
+                          .value
+                          .stringWithMarkup[0]
+                          .string),
                   TextSpan(
                       text: " g/mol",
                       style: TextStyle(

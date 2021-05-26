@@ -15,7 +15,7 @@ class _ArViewState extends State<ArView> {
   @override
   void initState() {
     id = ShowSearchAuto.comp.trim();
-    objectPath = "http://192.168.0.101:5000/files/$id.glb";
+    objectPath = "http://192.168.0.103:8000/files/$id.glb";
     super.initState();
   }
 
@@ -28,8 +28,7 @@ class _ArViewState extends State<ArView> {
   }
 
   void _addcompound(ArCoreHitTestResult plane) {
-    final compoundNode = ArCoreReferenceNode(  
-     
+    final compoundNode = ArCoreReferenceNode(
         name: id,
         // object3DFileName: "/storage/emulated/0/Chemical/bin/glb/2244.glb",
 
@@ -37,18 +36,15 @@ class _ArViewState extends State<ArView> {
         // objectUrl: "http://192.168.1.3:8080/files/2244.glb",
         objectUrl: objectPath,
         scale: vector.Vector3.all(0.5),
-        position: plane.pose.translation + vector.Vector3(0.0,0.0,-5.0),
+        position: plane.pose.translation + vector.Vector3(0.0, 0.0, -5.0),
         rotation: plane.pose.rotation);
     arCoreController.addArCoreNodeWithAnchor(compoundNode);
   }
 
   void _handleOnPlaneTap(List<ArCoreHitTestResult> hits) {
     final hit = hits.first;
- 
 
-    
-      _addcompound(hit);
-   
+    _addcompound(hit);
   }
 
   void onTapHandler(String name) {
@@ -64,7 +60,6 @@ class _ArViewState extends State<ArView> {
                   Icons.delete,
                 ),
                 onPressed: () {
-                  
                   arCoreController.removeNode(nodeName: name);
                   Navigator.pop(context);
                 })
@@ -86,7 +81,6 @@ class _ArViewState extends State<ArView> {
       body: ArCoreView(
         onArCoreViewCreated: _onArCoreViewCreated,
         enableTapRecognizer: true,
-        
       ),
     );
   }

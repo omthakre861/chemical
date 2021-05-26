@@ -113,8 +113,15 @@ class _properties_tabState extends State<properties_tab> {
                                         name.information[0].value.unit;
                                   }
                                 } else {
-                                  return name.information[0].value
-                                      .stringWithMarkup[0].string;
+                                  if (name.information[0].value.unit == null) {
+                                    return name.information[0].value
+                                        .stringWithMarkup[0].string.toString();
+                                  } else {
+                                    return name.information[0].value
+                                            .stringWithMarkup[0].string +
+                                        " " +
+                                        name.information[0].value.unit;
+                                  }
                                   //           .information[0].value.stringWithMarkup[0].string
                                 }
                               }()),
